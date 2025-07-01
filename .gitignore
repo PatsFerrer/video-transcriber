@@ -1,0 +1,36 @@
+# Ambientes Virtuais
+/venv
+/.venv
+/env
+/ENV
+
+# Arquivos de Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de configuração de IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de teste
+.pytest_cache/
+.coverage
+
+# Arquivos de dependências e build
+*.egg-info/
+dist/
+build/
+wheels/
+pip-wheel-metadata/
+
+# Arquivos de ambiente com segredos
+.env
+.env.*
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db

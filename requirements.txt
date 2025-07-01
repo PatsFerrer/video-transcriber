@@ -1,0 +1,6 @@
+moviepy==1.0.3  # Para manipulação de vídeo
+# openai-whisper==20231117  # Para transcrição de áudio (melhor qualidade)
+openai-whisper
+python-dotenv==1.0.0  # Para variáveis de ambiente
+pytest==7.4.3  # Para testes
+torch  # Necessário para o whisper 
