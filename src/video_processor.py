@@ -1,17 +1,5 @@
 import os
 from moviepy.editor import VideoFileClip
-import moviepy.config as moviepy_config
-
-# Configura o caminho do FFmpeg
-ffmpeg_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ffmpeg", "ffmpeg.exe")
-if os.path.exists(ffmpeg_path):
-    moviepy_config.change_settings({"FFMPEG_BINARY": ffmpeg_path})
-    os.environ["IMAGEIO_FFMPEG_EXE"] = ffmpeg_path
-    os.environ["FFMPEG_BINARY"] = ffmpeg_path
-
-# Verifica se o FFmpeg está acessível
-if not os.path.exists(ffmpeg_path):
-    raise RuntimeError(f"FFmpeg não encontrado em: {ffmpeg_path}")
 
 import whisper
 from datetime import datetime
