@@ -46,8 +46,6 @@ class VideoProcessor:
         Returns:
             dict: Resultado da transcrição com timestamps
         """
-        print(f"Áudio extraído: {audio_path}")
-        print(f"Existe? {os.path.isfile(audio_path)}")
 
         print("Transcrevendo áudio (pode levar alguns minutos)...")
         result = self.model.transcribe(
