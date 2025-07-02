@@ -1,5 +1,10 @@
 import os
+import sys
+# Adiciona o diretório raiz ao PYTHONPATH
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from ffmpeg_setup import setup_ffmpeg
+from transcription.summarizer import summarize_text
 from video_processor import VideoProcessor
 
 def main():
@@ -30,8 +35,15 @@ def main():
             
             print(f"\nProcessamento concluído!")
             print(f"Transcrição salva em: {result['transcription_path']}")
+
+            with open(result['transcription_path'], 'r', encoding='utf-8') as file:
+                transcription_text = file.read()
+
+            print('\nResumo gerado com Groq:\n') 
+            summarize_text(transcription_text)
+                
             if result['frames']:
-                print(f"Frames salvos em: {output_dir}")
+                print(f"\n\nFrames salvos em: {output_dir}")
                 print(f"Número de frames capturados: {len(result['frames'])}")
                 
         except Exception as e:
