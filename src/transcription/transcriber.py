@@ -12,9 +12,7 @@ class Transcriber:
         Transcreve o áudio para texto usando Whisper.
         """
         print("Transcrevendo áudio (pode levar alguns minutos)...")
-        result = self.model.transcribe(
-            audio_path, language="pt", task="transcribe", verbose=True
-        )
+        result = self.model.transcribe(audio_path, task="transcribe", verbose=True)
         return result
 
     def save_transcription(self, transcription: dict, output_dir: str) -> str:
