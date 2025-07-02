@@ -29,7 +29,6 @@ pip-wheel-metadata/
 
 # Arquivos de ambiente com segredos
 .env
-.env.*
 
 # Arquivos de sistema operacional
 .DS_Store
