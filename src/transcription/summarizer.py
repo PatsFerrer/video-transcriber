@@ -1,7 +1,7 @@
 from config import GROQ_MODEL
 from .groq_client import client
 
-def summarize_text(text: str) -> str:
+def summarize_text(text: str, verbose: bool = False) -> str:
     """
     Chama a API do Groq para resumir um texto.
     Args:
@@ -27,7 +27,8 @@ def summarize_text(text: str) -> str:
 
     summary = ""
     for chunk in response:
-        summary += chunk.choices[0].delta.content or ""
-        print(chunk.choices[0].delta.content or "", end="")
-    
+        part = chunk.choices[0].delta.content or ""
+        summary += part
+        if verbose:
+            print(part, end="")
     return summary
