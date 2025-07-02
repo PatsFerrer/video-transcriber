@@ -1,6 +1,9 @@
 import os
+from unittest.mock import MagicMock, patch
 import pytest
-from src.video_processor import VideoProcessor
+
+from transcription.video_processor import VideoProcessor
+
 
 @pytest.fixture
 def temp_dirs(tmp_path):
@@ -11,13 +14,19 @@ def temp_dirs(tmp_path):
     output_dir.mkdir()
     return str(input_dir), str(output_dir)
 
-def test_video_processor_initialization(temp_dirs):
-    """Testa a inicialização do VideoProcessor"""
+
+@patch("transcription.video_processor.Transcriber")
+def test_video_processor_initialization(mock_transcriber_class, temp_dirs):
+    """Testa a inicialização do VideoProcessor sem carregar o modelo real"""
     input_dir, output_dir = temp_dirs
     video_path = os.path.join(input_dir, "test_video.mp4")
-    
+
+    # Mocka o objeto Transcriber retornado
+    mock_transcriber = MagicMock()
+    mock_transcriber_class.return_value = mock_transcriber
+
     processor = VideoProcessor(video_path, output_dir)
-    
+
     assert processor.input_path == video_path
     assert processor.output_dir == output_dir
-    assert processor.model is not None 
+    assert processor.transcriber == mock_transcriber
