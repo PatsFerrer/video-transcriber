@@ -16,9 +16,16 @@ class JobPosition:
 
     @classmethod
     def from_dict(cls, data: Dict) -> 'JobPosition':
+        """
+        Cria uma instância de JobPosition a partir de um dicionário.
+        """
         questions = [
-            JobQuestion(**question) 
-            for question in data.get('questions', [])
+            JobQuestion(
+                question=q["question"],
+                expected_answer=q["expected_answer"],
+                weight=q.get("weight", 1.0)
+            )
+            for q in data.get('questions', [])
         ]
         return cls(
             name=data['name'],
@@ -28,13 +35,16 @@ class JobPosition:
 def extract_job_position(filename: str) -> Optional[str]:
     """
     Extrai o nome da vaga do nome do arquivo.
-    Exemplo: 'candidato_joao_frontend.mp4' -> 'frontend'
+    Exemplo: 'candidato_joao_frontend_q1.mp4' -> 'frontend'
     """
     try:
         # Remove a extensão e split por underscore
         parts = os.path.splitext(filename)[0].split('_')
-        # A vaga é sempre a última parte
-        return parts[-1].lower()
+        # A vaga está antes do _qN
+        for i, part in enumerate(parts):
+            if part.startswith('q') and part[1:].isdigit():
+                return parts[i-1].lower()
+        return None
     except Exception:
         return None
 
