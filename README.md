@@ -64,3 +64,8 @@ Para executar os testes:
 ```bash
 pytest tests/
 ```
+
+### Fluxo de Processamento
+
+![Diagrama de fluxo do backend](image.png)
+
