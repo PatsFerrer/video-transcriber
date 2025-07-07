@@ -1,0 +1,20 @@
+{
+  "name": "frontend",
+  "questions": [
+    {
+      "question": "Explique o conceito de Virtual DOM no React e por que ele é importante.",
+      "expected_answer": "O Virtual DOM é uma representação leve em memória do DOM real. Quando ocorrem mudanças de estado no React, primeiro ele atualiza o Virtual DOM e depois compara com o DOM real para identificar as mudanças mínimas necessárias. Isso é importante porque manipulações diretas do DOM são custosas, e o Virtual DOM ajuda a otimizar essas operações, resultando em melhor performance.",
+      "weight": 1.0
+    },
+    {
+      "question": "Como você lida com o gerenciamento de estado em aplicações React?",
+      "expected_answer": "Para gerenciamento de estado em React, podemos usar diferentes abordagens dependendo da complexidade. Para estado local, usamos useState e useReducer. Para estado global, podemos usar Context API para casos mais simples, ou Redux/MobX para aplicações maiores que precisam de gerenciamento de estado mais robusto. É importante escolher a solução adequada para não adicionar complexidade desnecessária.",
+      "weight": 1.0
+    },
+    {
+      "question": "Descreva suas estratégias para garantir a performance em aplicações React.",
+      "expected_answer": "Para otimizar a performance em React, utilizo várias estratégias: 1) Memorização com useMemo e useCallback para evitar re-renderizações desnecessárias, 2) Code splitting com React.lazy para carregar componentes sob demanda, 3) Virtualização para listas longas, 4) Otimização de imagens e assets, 5) Implementação de service workers para caching, 6) Uso de ferramentas de análise de performance como React DevTools e Lighthouse.",
+      "weight": 1.0
+    }
+  ]
+} 

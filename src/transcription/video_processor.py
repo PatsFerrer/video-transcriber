@@ -1,4 +1,5 @@
 import os
+import json
 from transcription.audio_extractor import extract_audio
 from transcription.frame_capture import capture_frames
 from transcription.transcriber import Transcriber
@@ -25,18 +26,33 @@ class VideoProcessor:
             capture_frames: Se True, também captura frames do vídeo
 
         Returns:
-            dict: Resultado do processamento
+            dict: Resultado do processamento com caminhos dos arquivos gerados
         """
+        # Extrai o áudio
         audio_path = extract_audio(self.input_path, self.output_dir)
-        transcription = self.transcriber.transcribe(audio_path)
-        transcription_path = self.transcriber.save_transcription(
-            transcription, self.output_dir
-        )
+        
+        try:
+            # Transcreve o áudio
+            transcription = self.transcriber.transcribe(audio_path)
+            
+            # Salva a transcrição
+            transcription_path = self.transcriber.save_transcription(
+                transcription, self.output_dir
+            )
 
-        result = {"transcription_path": transcription_path, "frames": None}
+            result = {
+                "transcription_path": transcription_path,
+                "transcription": transcription,  # Inclui a transcrição diretamente
+                "frames": None
+            }
 
-        if capture:
-            result["frames"] = capture_frames(self.input_path, self.output_dir)
+            # Captura frames se solicitado
+            if capture:
+                result["frames"] = capture_frames(self.input_path, self.output_dir)
 
-        os.remove(audio_path)
-        return result
+            return result
+            
+        finally:
+            # Limpa o arquivo de áudio temporário
+            if os.path.exists(audio_path):
+                os.remove(audio_path)
