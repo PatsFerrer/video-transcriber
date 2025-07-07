@@ -64,7 +64,7 @@ python src/main.py
 
 Para executar os testes:
 ```bash
-pytest tests/
+pytest
 ```
 
 ### Fluxo de Processamento
