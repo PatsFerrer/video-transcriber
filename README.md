@@ -1,18 +1,20 @@
-# POC - Transcrição de Áudio de Vídeos
+# POC - Sistema de Avaliação Automatizada de Entrevistas em Vídeo
 
-Este projeto é uma Prova de Conceito (POC) para extração e transcrição de áudio de vídeos com foco em entender como automatizar a geração de resumos com IA.
+Aplicação Python que automatiza todo o processo de avaliação de entrevistas técnicas em vídeo: da extração de áudio até a pontuação das respostas com IA.
 
 ## Funcionalidades
 
-- Extração de áudio de arquivos de vídeo
-- Transcrição de áudio para texto com Whisper
-- Captura de frames do vídeo
-- Geração de resumo automático com LLM via Groq API
+- Extração de áudio de vídeos via FFmpeg
+- Transcrição de áudio com Whisper, com detecção automática de idioma
+- Captura opcional de frames do vídeo
+- Resumo das respostas com LLM (Groq API)
+- Avaliação técnica automatizada (pontuação 0-10 e feedback) comparando resposta do candidato com gabarito
+- Relatórios JSON por candidato e pergunta
 
 ## Melhorias Recentes
 
-- A transcrição agora **detecta automaticamente o idioma** falado no vídeo. Isso melhora a precisão em vídeos que contêm uma mistura de português e inglês.
-- Separação do código em módulos reutilizáveis para facilitar manutenção e testes.
+- Adicionado sistema de avaliação técnica automatizada com pontuação e feedback detalhado
+- Refatoração para arquitetura modular, com testes unitários e suporte multiplataforma
 
 ## Configuração do Ambiente
 
